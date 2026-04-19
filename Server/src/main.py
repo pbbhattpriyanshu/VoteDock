@@ -9,7 +9,7 @@ async def startup_db():
 
 @app.on_event("shutdown")
 async def shutdown_db():
-    await close_db
+    await close_db()
 
 # Root route
 @app.get("/")
