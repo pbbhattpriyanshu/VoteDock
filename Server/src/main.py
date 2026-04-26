@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from src.database.mongoDB import connect_db, close_db
+from src.api import auth
 
 app = FastAPI()
 
@@ -15,3 +16,6 @@ async def shutdown_db():
 @app.get("/")
 def home():
     return {"message": "Welcome to the Voting System API 🚀"}
+
+# additional Routes
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])
