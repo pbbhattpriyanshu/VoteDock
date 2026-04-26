@@ -2,6 +2,11 @@ from beanie import Document
 from pydantic import EmailStr
 from typing import Optional
 from datetime import datetime
+from enum import Enum
+
+class UserRole(str, Enum):
+    admin = "admin"
+    voter = "voter"
 
 class User(Document):
     name: str
@@ -11,7 +16,8 @@ class User(Document):
     address: str
     adharNumber: int
     password: str
-    role: str = "voter"
+
+    role: UserRole = UserRole.voter
     isVoted: bool = False
 
     created_at: datetime = datetime.utcnow()
